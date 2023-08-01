@@ -100,10 +100,10 @@ source "proxmox-iso" "ubuntu-server-jammy" {
     http_port_min = 8800
     http_port_max = 8810
 
-    ssh_username = "your-user-name"
+    ssh_username = "ubuntu"
 
     # (Option 1) Add your Password here
-    ssh_password = "your-password-plaintext"
+    ssh_password = "PLAINTEXT_PASSWORD"
     # - or -
     # (Option 2) Add your Private SSH KEY file here
     # ssh_private_key_file = "~/.ssh/id_rsa"

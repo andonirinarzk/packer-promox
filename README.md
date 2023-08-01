@@ -28,10 +28,18 @@ For environment variables you can set them in your shell, or you can set them in
 | `PROXMOX_API_TOKEN_ID` | Proxmox API token id | Yes | |
 | `PROXMOX_API_TOKEN_SECRET` | Proxmox API token secret | Yes | |
 | `RUNNER_IP_ADDRESS` | IP address of the Gitlab runner | Yes | Only for build |
+| `PASSWORD` | Password for user `ubuntu` | Yes | Only for build |
 
-**Note 01:** about `RUNNER_IP_ADDRESS` variable: This variable is only required if you are using the Gitlab CI/CD pipeline. The reason for this is that the runner is running in Docker, and the Docker container does not have access to the Proxmox API. To get around this, we need to use the IP address of the host machine.
+**Note:** about `RUNNER_IP_ADDRESS` variable: This variable is only required if you are using the Gitlab CI/CD pipeline. The reason for this is that the runner is running in Docker, and the Docker container does not have access to the Proxmox API. To get around this, we need to use the IP address of the host machine.
 
-**Note 02:** User's password must be hashed in `user-data` file. You can use `openssl` command to generate hashed password. For example: 
+### Username and password
+The default username for the VM is `ubuntu`. 
+
+If you run Packer locally you must edit Packer template files and `user-data` files to set password and hashed password. If you are using the Gitlab CI/CD pipeline, just set the plaintext `PASSWORD` variable.
+
+**Note:** You don't need hashed password on CI/CD pipeline, it will be hashed automatically. just set `PASSWORD` variable.
+
+**Note:** You can use `openssl` command to generate hashed password. For example:
 ```
 openssl passwd -6 -salt xyz your_password
 ```

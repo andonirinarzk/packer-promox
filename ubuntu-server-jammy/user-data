@@ -26,11 +26,11 @@ autoinstall:
     package_upgrade: false
     timezone: Europe/Istanbul
     users:
-      - name: your-user-name
+      - name: ubuntu
         groups: [adm, sudo]
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /bin/bash
-        passwd: your_hashed_password
+        passwd: HASHED_PASSWORD
         # - or -
         # ssh_authorized_keys:
