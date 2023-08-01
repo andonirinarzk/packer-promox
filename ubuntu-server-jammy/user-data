@@ -1,0 +1,36 @@
+#cloud-config
+autoinstall:
+  updates: security
+  apt:
+    disable_suites: [security]
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: en
+  ssh:
+    install-server: true
+    allow-pw: true
+    disable_root: false
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+    allow_password_authentication: true
+  packages:
+    - qemu-guest-agent
+    - sudo
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  user-data:
+    package_upgrade: false
+    timezone: Europe/Istanbul
+    users:
+      - name: your-user-name
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        passwd: your_hashed_password
+        # - or -
+        # ssh_authorized_keys:
